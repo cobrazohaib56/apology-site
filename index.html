@@ -56,14 +56,18 @@
         .heart {
             color: #ff6b9d;
             font-size: clamp(6px, 2vw, 14px);
-            line-height: 1.2;
+            line-height: 1.4;
             letter-spacing: 1px;
-            white-space: pre;
+            white-space: pre-wrap;
             text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
             margin: 20px auto;
             font-family: 'Courier New', monospace;
             overflow-x: auto;
             max-width: 100%;
+        }
+        .heart span {
+            display: block;
+            text-align: center;
         }
         .animated-heart {
             animation: heartbeat 1.5s ease-in-out infinite;
@@ -227,22 +231,20 @@
 
         <!-- Step 2 -->
         <div class="step" id="step2">
-            <h1>💔 From the Heart 💔</h1>
-            <div class="heart animated-heart">
-       I'm sorry   I'm sorry
-    I'm sorry I'm sorry I'm sorry
-  I'm sorry I'm sorry I'm sorry I'm sorry
- I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
-I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
-I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
- I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
-  I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
-   I'm sorry I'm sorry I'm sorry I'm sorry
-     I'm sorry I'm sorry I'm sorry
-       I'm sorry I'm sorry
-         I'm sorry
+            <h1>⭐ You're My Star ⭐</h1>
+            <div class="heart animated-heart" style="text-align: left; display: inline-block;">
+<span style="color: #ff6b9d;">You're the sunshine that brightens my darkest days ☀️</span>
+<span style="color: #ffc371;">Every moment with you feels like a beautiful dream 💭</span>
+<span style="color: #fff844;">Your smile makes my heart skip a beat every time 💓</span>
+<span style="color: #90f7ec;">You're the most precious person in my entire world 🌍</span>
+<span style="color: #a890fe;">I'm so lucky to have you in my life, Zainab 🍀</span>
+<span style="color: #ff6b9d;">You make everything better just by being yourself ✨</span>
+<span style="color: #ffc371;">My heart belongs to you and only you forever 💝</span>
+<span style="color: #fff844;">You're my best friend, my love, my everything 👑</span>
+<span style="color: #90f7ec;">I promise to always cherish and protect your heart 💖</span>
+<span style="color: #a890fe;">You're the reason I believe in true love, cutie 💕</span>
             </div>
-            <p class="message">Each "I'm sorry" comes straight from my heart...</p>
+            <p class="message">Each line is a promise from my heart to yours...</p>
             <button onclick="nextStep(3)">I'm Listening...</button>
         </div>
 
@@ -253,8 +255,9 @@ I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
             <p class="message">
                 <span class="dancing-text">I'm</span> 
                 <span class="dancing-text" style="animation-delay: 0.1s">sorry</span> 
-                <span class="dancing-text" style="animation-delay: 0.2s">for</span> 
-                <span class="dancing-text" style="animation-delay: 0.3s">everything!</span>
+                <span class="dancing-text" style="animation-delay: 0.2s">Zainab</span> 
+                <span class="dancing-text" style="animation-delay: 0.3s">for</span>
+                <span class="dancing-text" style="animation-delay: 0.4s">everything!</span>
             </p>
             <button onclick="nextStep(4)">Keep Going...</button>
         </div>
@@ -263,12 +266,12 @@ I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
         <div class="step" id="step4">
             <h1>🎨 A Sorry Rainbow! 🎨</h1>
             <div class="rainbow-lines">
-                <div style="color: #ff6b9d;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
-                <div style="color: #ffc371;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
-                <div style="color: #fff844;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
-                <div style="color: #90f7ec;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
-                <div style="color: #a890fe;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
-                <div style="color: #ff6b9d;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
+                <div style="color: #ff6b9d;">I'm sorry Zainab I'm sorry Zainab I'm sorry Zainab</div>
+                <div style="color: #ffc371;">I'm sorry Zainab I'm sorry Zainab I'm sorry Zainab</div>
+                <div style="color: #fff844;">I'm sorry Zainab I'm sorry Zainab I'm sorry Zainab</div>
+                <div style="color: #90f7ec;">I'm sorry Zainab I'm sorry Zainab I'm sorry Zainab</div>
+                <div style="color: #a890fe;">I'm sorry Zainab I'm sorry Zainab I'm sorry Zainab</div>
+                <div style="color: #ff6b9d;">I'm sorry Zainab I'm sorry Zainab I'm sorry Zainab</div>
             </div>
             <p class="message">Every color represents how much I care!</p>
             <button onclick="nextStep(5)">Almost There...</button>
@@ -279,7 +282,7 @@ I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
             <h1>✨ Final Apology! ✨</h1>
             <div class="emoji" style="font-size: clamp(50px, 12vw, 80px);">🤗</div>
             <p class="message" style="font-size: clamp(18px, 4vw, 24px); font-weight: bold;">
-                I'm TRULY, DEEPLY, SINCERELY SORRY!
+                I'm TRULY, DEEPLY, SINCERELY SORRY ZAINAB!
             </p>
             <p class="message">Can you forgive me?</p>
             <button onclick="forgive()">Yes, I Forgive You! 💖</button>
@@ -292,6 +295,9 @@ I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
             <div class="emoji" style="font-size: clamp(60px, 15vw, 100px);">😊💕</div>
             <p class="message" style="font-size: clamp(18px, 4.5vw, 26px);">
                 You're the BEST! Thank you for forgiving me! 
+            </p>
+            <p class="message" style="font-size: clamp(20px, 5vw, 28px); font-weight: bold; margin-top: 20px;">
+                YOU ARE MY TRUE ONE CUTOOOO 💕
             </p>
             <div style="margin: 20px 0; font-size: clamp(30px, 8vw, 40px);">
                 ❤️ 💛 💚 💙 💜 🧡
