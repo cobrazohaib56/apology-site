@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Interactive I'm Sorry Journey</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             font-family: 'Arial', sans-serif;
@@ -17,39 +18,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             padding: 10px;
+            overflow-x: hidden;
         }
         .container {
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 30px;
+            border-radius: 20px;
             backdrop-filter: blur(15px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
+            max-width: 90%;
             width: 100%;
             position: relative;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                border-radius: 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-                margin: 10px;
-            }
+            overflow: hidden;
         }
         .step {
             display: none;
             animation: fadeIn 0.5s ease-in;
             position: relative;
-            min-height: 400px;
+            min-height: 300px;
         }
         .step.active {
             display: block;
@@ -60,89 +48,45 @@
         }
         h1 {
             color: #fff;
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: clamp(20px, 5vw, 36px);
+            margin-bottom: 15px;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 28px;
-                margin-bottom: 15px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 24px;
-                margin-bottom: 10px;
-            }
+            word-wrap: break-word;
         }
         .heart {
             color: #ff6b9d;
-            font-size: 14px;
+            font-size: clamp(6px, 2vw, 14px);
             line-height: 1.2;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             white-space: pre;
             text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
-            margin: 30px 0;
+            margin: 20px auto;
             font-family: 'Courier New', monospace;
-        }
-        
-        @media (max-width: 768px) {
-            .heart {
-                font-size: 11px;
-                letter-spacing: 1.5px;
-                margin: 20px 0;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .heart {
-                font-size: 8px;
-                letter-spacing: 1px;
-                margin: 15px 0;
-                line-height: 1.1;
-            }
+            overflow-x: auto;
+            max-width: 100%;
         }
         .animated-heart {
             animation: heartbeat 1.5s ease-in-out infinite;
         }
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
+            25% { transform: scale(1.05); }
             50% { transform: scale(1); }
         }
         button {
             background: linear-gradient(135deg, #ff6b9d, #ff8fab);
             border: none;
             color: white;
-            padding: 15px 40px;
-            font-size: 18px;
+            padding: 12px 25px;
+            font-size: clamp(14px, 3vw, 18px);
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
             transition: all 0.3s ease;
             font-weight: bold;
-            margin: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            button {
-                padding: 12px 30px;
-                font-size: 16px;
-                margin: 8px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            button {
-                padding: 10px 20px;
-                font-size: 14px;
-                margin: 5px;
-                width: calc(100% - 10px);
-                max-width: 300px;
-            }
+            margin: 8px 5px;
+            min-width: 150px;
+            touch-action: manipulation;
         }
         button:hover {
             transform: translateY(-3px);
@@ -153,13 +97,15 @@
         }
         .message {
             color: white;
-            font-size: 20px;
-            margin: 20px 0;
+            font-size: clamp(16px, 3.5vw, 20px);
+            margin: 15px 10px;
             line-height: 1.6;
+            word-wrap: break-word;
         }
         .emoji {
-            font-size: 60px;
+            font-size: clamp(40px, 10vw, 60px);
             animation: bounce 2s ease-in-out infinite;
+            margin: 10px 0;
         }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
@@ -170,7 +116,6 @@
             width: 10px;
             height: 10px;
             background: #ff6b9d;
-            position: absolute;
             animation: confetti-fall 3s linear;
         }
         @keyframes confetti-fall {
@@ -181,7 +126,7 @@
         }
         .progress {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.3);
             border-radius: 10px;
             margin-bottom: 20px;
@@ -214,6 +159,55 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+        .rainbow-lines {
+            font-size: clamp(14px, 3vw, 20px);
+            line-height: 1.8;
+            margin: 20px 10px;
+        }
+        .rainbow-lines > div {
+            padding: 5px 0;
+            word-wrap: break-word;
+        }
+        #noButton {
+            background: linear-gradient(135deg, #666, #999);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                max-width: 95%;
+                padding: 20px 15px;
+            }
+            button {
+                min-width: 120px;
+                padding: 10px 20px;
+                margin: 5px 3px;
+            }
+            .heart {
+                font-size: 6px;
+                letter-spacing: 0.5px;
+            }
+            #noButton {
+                min-width: 100px;
+                padding: 8px 15px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .container {
+                padding: 15px 10px;
+            }
+            button {
+                min-width: 100px;
+                font-size: 13px;
+            }
+            .heart {
+                font-size: 5px;
+                letter-spacing: 0.3px;
+            }
         }
     </style>
 </head>
@@ -268,7 +262,7 @@ I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
         <!-- Step 4 -->
         <div class="step" id="step4">
             <h1>🎨 A Sorry Rainbow! 🎨</h1>
-            <div style="font-size: 20px; line-height: 1.8; color: white; margin: 30px 0;">
+            <div class="rainbow-lines">
                 <div style="color: #ff6b9d;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
                 <div style="color: #ffc371;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
                 <div style="color: #fff844;">I'm sorry I'm sorry I'm sorry I'm sorry</div>
@@ -283,23 +277,23 @@ I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
         <!-- Step 5 -->
         <div class="step" id="step5">
             <h1>✨ Final Apology! ✨</h1>
-            <div class="emoji" style="font-size: 80px;">🤗</div>
-            <p class="message" style="font-size: 24px; font-weight: bold;">
+            <div class="emoji" style="font-size: clamp(50px, 12vw, 80px);">🤗</div>
+            <p class="message" style="font-size: clamp(18px, 4vw, 24px); font-weight: bold;">
                 I'm TRULY, DEEPLY, SINCERELY SORRY!
             </p>
             <p class="message">Can you forgive me?</p>
             <button onclick="forgive()">Yes, I Forgive You! 💖</button>
-            <button id="noButton" onclick="moveButton()" style="background: linear-gradient(135deg, #666, #999); position: relative;">No, I Have Not 😤</button>
+            <button id="noButton" onmouseenter="moveButton()" ontouchstart="moveButton(event)">No, I Have Not 😤</button>
         </div>
 
         <!-- Step 6 - Celebration -->
         <div class="step" id="step6">
             <h1 class="rainbow">🎉 THANK YOU! 🎉</h1>
-            <div class="emoji" style="font-size: 100px;">😊💕</div>
-            <p class="message" style="font-size: 26px;">
+            <div class="emoji" style="font-size: clamp(60px, 15vw, 100px);">😊💕</div>
+            <p class="message" style="font-size: clamp(18px, 4.5vw, 26px);">
                 You're the BEST! Thank you for forgiving me! 
             </p>
-            <div style="margin: 30px 0; font-size: 40px;">
+            <div style="margin: 20px 0; font-size: clamp(30px, 8vw, 40px);">
                 ❤️ 💛 💚 💙 💜 🧡
             </div>
             <button onclick="startOver()">Start Over</button>
@@ -334,19 +328,24 @@ I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry I'm sorry
             updateProgress();
         }
 
-        function moveButton() {
+        function moveButton(e) {
+            if (e) e.preventDefault();
+            
             const button = document.getElementById('noButton');
-            const container = button.parentElement;
+            const container = button.closest('.step');
             
-            const maxX = container.offsetWidth - button.offsetWidth - 40;
-            const maxY = container.offsetHeight - button.offsetHeight - 40;
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
             
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
+            const maxX = containerRect.width - buttonRect.width - 40;
+            const maxY = containerRect.height - buttonRect.height - 40;
             
-            button.style.position = 'absolute';
+            const randomX = Math.random() * Math.max(maxX, 50);
+            const randomY = Math.random() * Math.max(maxY, 50);
+            
             button.style.left = randomX + 'px';
             button.style.top = randomY + 'px';
+            button.style.transform = 'none';
             button.style.transition = 'all 0.3s ease';
         }
 
